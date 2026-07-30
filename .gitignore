@@ -1,0 +1,96 @@
+# ============================================================
+# EOIS — Monorepo .gitignore
+# ============================================================
+
+# ── Python / Backend ────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.hypothesis/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+pytest.ini
+nosetests.xml
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+backend/.venv/
+.venv/
+venv/
+ENV/
+env/
+
+# Alembic
+backend/alembic/versions/*.pyc
+
+# Local SQLite dev database
+backend/*.db
+backend/*.db-shm
+backend/*.db-wal
+
+# Scratch / temp files
+backend/scratch_*.py
+backend/temp_*.txt
+backend/fix_*.py
+backend/test_*_out.txt
+
+# Uploads (runtime data, not source)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# ── Node / Frontend ─────────────────────────────────────────
+node_modules/
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/.swc/
+frontend/tsconfig.tsbuildinfo
+frontend/.env*.local
+!frontend/.env.local.example
+
+# Next.js
+.next/
+out/
+
+# ── Environment & Secrets ───────────────────────────────────
+.env
+.env.local
+.env.production
+.env.staging
+backend/.env
+!backend/.env.example
+!frontend/.env.local.example
+
+# ── IDE & OS ─────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Docker ───────────────────────────────────────────────────
+# (docker-compose and Dockerfile are committed)
+*.log
+
+# ── AI Agent scaffolding ─────────────────────────────────────
+.claude/
+CLAUDE.md
+AGENTS.md

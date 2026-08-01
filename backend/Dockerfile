@@ -6,7 +6,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     antiword \
-    libreoffice-headless \
+    libreoffice \
     gcc \
     && rm -rf /var/lib/apt/lists/*
 

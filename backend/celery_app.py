@@ -2,8 +2,8 @@ import os
 
 from celery import Celery
 
-broker_url = os.getenv("CELERY_BROKER_URL", "redis://localhost:6379/0")
-backend_url = os.getenv("CELERY_RESULT_BACKEND", "redis://localhost:6379/0")
+broker_url = os.getenv("CELERY_BROKER_URL", "redis://redis:6379/0")
+backend_url = os.getenv("CELERY_RESULT_BACKEND", "redis://redis:6379/0")
 
 celery = Celery('eois', broker=broker_url, backend=backend_url)
 
@@ -38,6 +38,8 @@ celery.conf.beat_schedule = {
     },
 }
 celery.conf.timezone = 'Africa/Lagos'
+
+celery.conf.broker_connection_retry_on_startup = True
 
 # autodiscover_tasks() expects a Django-style `<package>.tasks` submodule;
 # these task modules live flat inside the `tasks` package, so import them

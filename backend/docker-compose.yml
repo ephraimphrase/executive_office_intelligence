@@ -6,23 +6,9 @@ services:
     env_file: .env
     depends_on:
       db:
-        image: pgvector/pgvector:pg16
-        ports:
-          - "5432:5432"
-        environment:
-          POSTGRES_DB: eois_db
-          POSTGRES_USER: eois_user
-          POSTGRES_PASSWORD: eois_password
-        volumes:
-          - postgres_data:/var/lib/postgresql/data
-        networks:
-          - eois-network
-        healthcheck:
-          test: ["CMD-SHELL", "pg_isready -U eois_user -d eois_db"]
-          interval: 10s
-          timeout: 5s
-          retries: 5
-        restart: unless-stopped
+        condition: service_healthy
+      redis:
+        condition: service_healthy
 
   worker:
     build: .
@@ -51,7 +37,7 @@ services:
     restart: unless-stopped
 
   db:
-    image: postgres:16-alpine
+    image: pgvector/pgvector:pg16
     ports:
       - "5432:5432"
     environment:

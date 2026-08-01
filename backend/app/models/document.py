@@ -78,8 +78,8 @@ class Document(Base):
     # DocumentVersion, keyed by document_id.
     version = Column(Integer, default=1, nullable=False)
 
-    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
-    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+    created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
+    updated_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
 
     uploaded_by = relationship("User", foreign_keys=[uploaded_by_id])
 
@@ -98,7 +98,7 @@ class DocumentVersion(Base):
     change_note = Column(Text, nullable=True)
 
     uploaded_by_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=True)
-    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
 
     document = relationship("Document", foreign_keys=[document_id], backref="versions")
     uploaded_by = relationship("User", foreign_keys=[uploaded_by_id])

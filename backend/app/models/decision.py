@@ -54,8 +54,8 @@ class Decision(Base):
     source_id = Column(String, nullable=True)
     ai_extracted = Column(Boolean, default=False)
     
-    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
-    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+    created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
+    updated_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
     
     made_by_user = relationship("User", foreign_keys=[made_by_user_id])
     responsible_user = relationship("User", foreign_keys=[responsible_user_id])

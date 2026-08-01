@@ -58,8 +58,8 @@ class Task(Base):
     notes = Column(Text, nullable=True)
     
     completed_at = Column(DateTime, nullable=True)
-    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
-    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+    created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
+    updated_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
     
     owner = relationship("User", foreign_keys=[owner_id], backref="owned_tasks")
     assignee = relationship("User", foreign_keys=[assigned_to], backref="assigned_tasks")

@@ -44,6 +44,6 @@ class Notification(Base):
     reference_id = Column(UUID(as_uuid=True), nullable=True)
     action_url = Column(String, nullable=True)
     
-    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
     
     user = relationship("User", backref="notifications")

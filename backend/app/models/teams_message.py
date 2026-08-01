@@ -26,7 +26,7 @@ class TeamsMessage(Base):
     sender_name = Column(String, nullable=True)
     sender_id = Column(String, nullable=True)
     content = Column(Text, nullable=False, default="")
-    received_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    received_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
 
     ai_summary = Column(Text, nullable=True)
     ai_meeting_requests = Column(JSON, default=list)
@@ -38,4 +38,4 @@ class TeamsMessage(Base):
     department_category = Column(String, nullable=True)
     processed = Column(Boolean, default=False)
 
-    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))

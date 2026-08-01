@@ -49,7 +49,7 @@ class Commitment(Base):
     follow_up_date = Column(DateTime, nullable=True)
     escalation_count = Column(Integer, default=0)
     
-    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
-    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+    created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
+    updated_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
     
     owner_user = relationship("User", foreign_keys=[owner_user_id])

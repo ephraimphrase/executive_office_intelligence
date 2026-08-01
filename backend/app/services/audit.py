@@ -26,3 +26,7 @@ async def log_action(db, actor, action: str, resource_type: str | None = None,
         await db.commit()
     except Exception as e:
         logger.warning(f"Audit log write failed for action={action}: {e}")
+        try:
+            await db.rollback()
+        except Exception:
+            pass

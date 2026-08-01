@@ -23,6 +23,6 @@ class AuditLog(Base):
     details = Column(JSON, default=dict)  # arbitrary before/after or context, kept small
     ip_address = Column(String, nullable=True)
 
-    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), index=True)
+    created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), index=True)
 
     actor = relationship("User", foreign_keys=[actor_user_id])

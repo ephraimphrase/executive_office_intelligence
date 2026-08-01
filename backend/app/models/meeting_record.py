@@ -67,8 +67,8 @@ class MeetingRecord(Base):
     board_paper_submitted = Column(Boolean, default=False)
     
     created_by_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=True)
-    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
-    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+    created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
+    updated_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
     
     event = relationship("Event", foreign_keys=[event_id])
     created_by = relationship("User", foreign_keys=[created_by_id])

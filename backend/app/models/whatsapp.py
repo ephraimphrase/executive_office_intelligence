@@ -24,7 +24,7 @@ class WhatsAppMessage(Base):
     sender = Column(String, nullable=False)
     content = Column(Text, nullable=False, default="")
     message_type = Column(Enum(WhatsAppMessageType), nullable=False, default=WhatsAppMessageType.TEXT)
-    received_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    received_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
 
     ai_summary = Column(Text, nullable=True)
     ai_meeting_requests = Column(JSON, default=list)
@@ -36,4 +36,4 @@ class WhatsAppMessage(Base):
     department_category = Column(String, nullable=True)
     processed = Column(Boolean, default=False)
 
-    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))

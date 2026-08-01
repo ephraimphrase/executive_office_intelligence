@@ -33,4 +33,4 @@ class Briefing(Base):
     sent_at = Column(DateTime, nullable=True)
     sent_to = Column(JSON, default=list)
     
-    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
